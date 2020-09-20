@@ -1,41 +1,50 @@
 <?php
 //nome da pasta
-$dirname = $_POST["codigo"];
+$dirnome = $_POST["codigo"];
 //diretorio
-$diretorio = '/';
+$barra = "/";
 //nome do arquivo
-$filename = $_POST["arquivo"];
+$filenome = $_POST["arquivo"];
 //pega oque esta escrito no textarea
 $text= $_POST["textarea"];
 //verifica se o diretorio existe
-if (is_dir("$dirname")){
-    echo "Diretorio existe"."</BR>";
+if (is_dir("$dirnome")){
+    echo "Diretorio existe"."</br>";
     //verifica se o arquivo existe
-    if (file_exists("$dirname.$diretorio.$filename.txt")){
-        echo "Arquivo existe"."</BR>";
+    if (file_exists("$dirnome"."$barra"."$filenome.txt")){
+        echo "Arquivo existe"."</br>";
         //cria um arquivo, sendo que ele coloca o ponteiro no final
-        $myfile = fopen("$dirname.$diretorio.$filename.txt","a+");
+        $myfile = fopen("$dirnome"."$barra"."$filenome.txt","a+");
         //escreve no arquivo .txt
         fwrite($myfile,$text."\r\n");
         //fecha o arquivo
         fclose($myfile);
+        echo "Arquivo sobrescrito";
     }
     else{
-        echo "Arquivo nao existe"."</BR>";
+        echo "Arquivo não existe"."</br>";
         //cria um arquivo
-        $myfile = fopen("$filename.txt",'w+');
+        $myfile = fopen("$filenome.txt",'w+');
+        //escreve no arquivo .txt
         fwrite($myfile,$text);
+        //fecha o arquivo
         fclose($myfile);
+        echo "Arquivo Criado";
     }
 }
 else{
     echo "Diretorio Não existe" . "<br>";
-    if(mkdir($dirname)){
+    if(mkdir($dirnome)){
         echo "Diretorio criado!"."<br>";
-        $filename = fopen("$dirname.$diretorio.$filename.txt","w+");
-        fwrite($filename,$text);
-        fclose($filename);
-        echo "Arquivo criado"."</BR>";
+        //cria um arquivo, sendo que ele coloca o ponteiro no final
+        $filenome = fopen("$dirnome.$barra"."$filenome.txt","w+");
+        //escreve no arquivo .txt
+        fwrite($filenome,$text);
+        //fecha o arquivo
+        fclose($filenome);
+        echo "Arquivo criado"."</br>";
     }
 }
+echo "<br>";
+echo "<a href=\"formulario.php\">Voltar</a>";
 ?>

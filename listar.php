@@ -1,33 +1,31 @@
 <?php
 //nome da pasta
-$dirname = $_POST["codigo"];
-//diretorio
-$diretorio = '/';
+$dirnome = $_POST["codigo"];
+//barra
+$barra = "/";
 //nome do arquivo
-$filename = $_POST["arquivo"];
+$filenome = $_POST["arquivo"];
 //pega oque esta escrito no textarea
-$text= $_POST["textarea"];
-//verifica se o diretorio existe
-
-$diretor = dir($dirname);
- 
-echo "Lista de Arquivos do diretório '<strong>".$dirname."</strong>':<br />";
-while($arquivo = $diretor -> read()){
-echo "<a href='".$dirname.$diretorio.$arquivo."'>".$arquivo."</a><br />";
-
-echo "<input type='submit' value = 'Editar' OnClick='Editar()'>";
-echo "<input type='submit' value = 'Excluir' OnClick='window.alert()'>";
-echo "<input type='submit' value = 'Excluir Tudo' OnClick='window.confirm()'>";
+$dis = dir("$dirnome/");
+echo "<div align=\"center\">";
+if(is_dir($dirnome)){
+    echo "Pasta existe";
+    if (file_exists("$dirnome"."$barra"."$filenome.txt")){
+        echo "<table border=\"1\">";
+        echo "<thead><tr><th colspan=\"1\">Lista de Arquivos do diretório <strong>".$dirnome."</strong></th></tr></thead><br />";
+        while(($arq = $dis->read()) !== false){
+            echo "<tbody>";
+            echo "<tr><td><a href='".$dirnome.$barra.$arq."'>".$arq."</a></td><br />";
+            echo "</tr></tbody>";
+        }
+        $dis -> close();
+    }
+    else{
+        echo "Nao tem arquivo"."</br>";
+    }
 }
-$diretor -> close();
-
-
-function Editar(){
-    header(Editar.php);
+else{
+    echo "Pasta não existe";
 }
-function Excluir(){
-    header(formulario.php);
-}
-function Excluirtudo(){
-    header(formulario.php);
-}
+echo "</div>";
+echo "<a href=\"formulario.php\">Voltar</a>";
