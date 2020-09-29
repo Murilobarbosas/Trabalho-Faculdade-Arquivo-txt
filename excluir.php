@@ -8,6 +8,7 @@ $filenome = $_POST["arquivo"];
 //pega oque esta escrito no textarea
 $text= $_POST["textarea"];
 //verifica se o dirt existe
+
 if (is_dir("$dirnome")){
     echo "Pasta existe";
     echo "<br>";
@@ -38,3 +39,4 @@ else{
 }
 echo "<br>";
 echo "<a href=\"formulario.php\">Voltar</a>";
+?>
