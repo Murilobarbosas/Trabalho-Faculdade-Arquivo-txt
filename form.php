@@ -71,5 +71,4 @@ class form{
         }
     }
 }
-$f = new form($f->setPasta($_POST["codigo"]),$f->setArquivo($_POST["arquivo"]),$f->setTextarea($_POST["textarea"]));
 ?>

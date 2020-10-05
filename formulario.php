@@ -34,7 +34,7 @@
     </head>
     <body>
         <div align="center">
-            <form name="form1" method="POST">
+            <form name="form1" method="POST" >
                 Codigos do Cliente: <br><input class="form-control" type="number" name="codigo"><br>
                 Nome do arquivo: <br><input class="form-control" type="text" required name="arquivo"><br>
                 Texto: <br><Textarea class="form-control" name="textarea" rows="10" cols="90" maxlength="500"></Textarea>
