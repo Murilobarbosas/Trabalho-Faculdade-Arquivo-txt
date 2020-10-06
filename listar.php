@@ -11,6 +11,7 @@ echo "<div align=\"center\">";
 if(is_dir($dirnome)){
     echo "Pasta existe";
     if (file_exists("$dirnome"."$barra"."$filenome.txt")){
+        
         echo "<table border=\"1\">";
         echo "<thead><tr><th colspan=\"1\">Lista de Arquivos do diretório <strong>".$dirnome."</strong></th></tr></thead><br />";
         while(($arq = $dis->read()) !== false){
